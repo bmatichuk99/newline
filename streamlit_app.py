@@ -8,6 +8,7 @@ import numpy as np
 import cv2
 from PIL import Image, ImageOps
 import matplotlib.pyplot as plt
+from streamlit_drawable_canvas import st_canvas
 
 # Load and preprocess MNIST data
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -35,7 +36,7 @@ if st.button('Train Model'):
 
 # Canvas for drawing digits
 st.write('Draw a digit below:')
-canvas_result = st.canvas(stroke_width=15, stroke_color='#FFFFFF', background_color='#000000', height=280, width=280)
+canvas_result = st_canvas(stroke_width=15, stroke_color='#FFFFFF', background_color='#000000', height=280, width=280, drawing_mode='freedraw')
 
 if canvas_result.image_data is not None:
     img = cv2.resize(canvas_result.image_data.astype('uint8'), (28, 28))
